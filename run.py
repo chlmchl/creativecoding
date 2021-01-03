@@ -1,12 +1,14 @@
 from flask import Flask
 
-my_awesome_app = Flask(__name__)
+import os
 
+twitter_diary = Flask(__name__)
 
-@my_awesome_app.route('/')
-def hello_world():
-    return 'Hello World!'
+twitter_diary.debug = True if os.environ.get("APP_DEBUG") == 'true' else False
 
+import index
+
+import refresh
 
 if __name__ == '__main__':
-    my_awesome_app.run()
+    twitter_diary.run()

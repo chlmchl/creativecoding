@@ -1,5 +1,5 @@
-from __main__ import app
+from __main__ import twitter_diary
 
-@app.route('/refresh', methods=['GET'])
+@twitter_diary.route('/refresh', methods=['GET'])
 def refresh():
     return 'refresh placeholder'

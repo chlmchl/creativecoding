@@ -1,5 +1,5 @@
-from __main__ import app
+from __main__ import twitter_diary
 
-@app.route('/')
+@twitter_diary.route('/')
 def hello_world():
     return 'Hello World!'

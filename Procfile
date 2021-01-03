@@ -1,1 +1,1 @@
-worker: python twitter_diary-heroku.py
+web: gunicorn run:my_awesome_app

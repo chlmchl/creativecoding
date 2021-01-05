@@ -80,4 +80,4 @@ def refresh():
 
     driver.close()  # closing the webdriver
 
-    return jsonify(usage)
+    return "success"

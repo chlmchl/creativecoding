@@ -1,14 +1,23 @@
 from flask import Flask
-
+from task import refresh
 import os
 
-app = Flask(__name__)
+twitter_diary = Flask(__name__)
 
-app.debug = True if os.environ.get("APP_DEBUG") == 'true' else False
+twitter_diary.debug = (
+    True if os.environ.get("TWITTER_DIARY_APP_DEBUG") == "true" else False
+)
 
-import index
 
-import refresh
+@twitter_diary.route("/")
+def hello_world():
+    return "Hello World!"
 
-if __name__ == '__main__':
-    app.run()
+
+@twitter_diary.route("/refresh", methods=["GET"])
+def refresh_route():
+    return refresh(), 200
+
+
+if __name__ == "__main__":
+    twitter_diary.run()

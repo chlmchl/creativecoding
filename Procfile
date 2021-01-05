@@ -1,1 +1,1 @@
-web: gunicorn run:twitter_diary
+web: gunicorn app:twitter_diary

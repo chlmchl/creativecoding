@@ -28,6 +28,7 @@ chrome_options.add_argument("--no-sandbox")
 # #url of the page to scrape
 url = "https://emojitracker.com"
 
+# connect database
 conn = psycopg2.connect(os.environ.get("TWITTER_DIARY_DB_URI"))
 
 
@@ -61,15 +62,18 @@ def refresh():
 
     sql = "SELECT * FROM history"
 
+    # get data and store it in before
     cur = conn.cursor()
     cur.execute(sql)
     before = cur.fetchall()
 
+    # empty history tab
     sql = "TRUNCATE history"
     cur.execute(sql)
 
     after = []
 
+    # if length of before = 0, initialiaze database
     if len(before) == 0:
         for emoji_number in emoji_numbers:
             emoji = emoji_name[index].get("data-title")
@@ -78,6 +82,7 @@ def refresh():
 
             index = index + 1
 
+        # store everything
         sql = "INSERT INTO history(date, emoji, count) VALUES(%s, %s, %s)"
         cur.executemany(sql, after)
         conn.commit()

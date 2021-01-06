@@ -54,26 +54,45 @@ def refresh():
     emoji_numbers = soup.find_all("span", {"class": "score"})
     emoji_name = soup.find_all("li", {"class": "emoji_char"})
 
-    i = 0
+    index = 0
 
     # create variable for timestamp and make sure it's readable
     date = datetime.datetime.now()
 
-    usage = []
-    sql = "INSERT INTO history(date, unicode, count) VALUES(%s, %s, %s)"
-
-    for emoji_number in emoji_numbers:
-        try:
-            emoji = unicodedata.lookup(emoji_name[i].get("data-title"))
-        except KeyError:
-            emoji = emoji_name[i].get("data-title")
-        count = emoji_number.get_text()
-        usage.append((date, emoji, count))
-
-        i = i + 1
+    sql = "SELECT * FROM history"
 
     cur = conn.cursor()
-    cur.executemany(sql, usage)
+    cur.execute(sql)
+    before = cur.fetchall()
+
+    sql = "TRUNCATE history"
+    cur.execute(sql)
+
+    after = []
+
+    delta = 0
+    line = (0, 0, 0)
+
+    for emoji_number in emoji_numbers:
+        # try:
+        #     emoji = unicodedata.lookup(emoji_name[i].get("data-title"))
+        # except KeyError:
+        emoji = emoji_name[index].get("data-title")
+        count = emoji_number.get_text()
+        after.append((date, emoji, count))
+
+        diff = int(after[index][2]) - int(before[index][2])
+        if diff > delta:
+            delta = diff
+            line = emoji, delta, before[index][0], after[index][0]
+
+        index = index + 1
+
+    sql = "INSERT INTO history(date, emoji, count) VALUES(%s, %s, %s)"
+    cur.executemany(sql, after)
+
+    sql = "INSERT INTO delta (emoji, delta, before, after) VALUES (%s, %s, %s, %s)"
+    cur.execute(sql, line)
     conn.commit()
 
     cur.close()
@@ -81,3 +100,14 @@ def refresh():
     driver.close()  # closing the webdriver
 
     return "success"
+
+
+def diary():
+    sql = "SELECT * FROM delta"
+
+    cur = conn.cursor()
+    cur.execute(sql)
+    result = cur.fetchall()
+    cur.close()
+
+    return jsonify(result)

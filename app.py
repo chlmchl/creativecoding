@@ -1,5 +1,5 @@
 from flask import Flask
-from task import refresh
+from task import refresh, diary
 import os
 
 twitter_diary = Flask(__name__)
@@ -11,12 +11,22 @@ twitter_diary.debug = (
 
 @twitter_diary.route("/")
 def hello_world():
-    return "Hello World!"
+    return "twitter diary api"
+
+
+@twitter_diary.route("/ping")
+def ping():
+    return "pong"
 
 
 @twitter_diary.route("/refresh", methods=["GET"])
 def refresh_route():
     return refresh(), 200
+
+
+@twitter_diary.route("/diary", methods=["GET"])
+def get_diary():
+    return diary(), 200
 
 
 if __name__ == "__main__":

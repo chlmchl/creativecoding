@@ -70,6 +70,22 @@ def refresh():
 
     after = []
 
+    if len(before) == 0:
+        for emoji_number in emoji_numbers:
+            emoji = emoji_name[index].get("data-title")
+            count = emoji_number.get_text()
+            after.append((date, emoji, count))
+
+            index = index + 1
+
+        sql = "INSERT INTO history(date, emoji, count) VALUES(%s, %s, %s)"
+        cur.executemany(sql, after)
+        conn.commit()
+
+        cur.close()
+
+        return "database initialized"
+
     delta = 0
     line = (0, 0, 0)
 

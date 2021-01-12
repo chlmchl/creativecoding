@@ -1,7 +1,7 @@
 name: minute-refresh
-# on:
-#   schedule:
-#     - cron: '0 * * * *'
+on:
+  schedule:
+    - cron: "0 * * * *"
 jobs:
   cron:
     runs-on: ubuntu-latest

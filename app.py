@@ -1,8 +1,10 @@
 from flask import Flask
 from task import refresh, diary
+from flask_cors import CORS
 import os
 
 twitter_diary = Flask(__name__)
+CORS(twitter_diary, resources={"*": {"origins": "*"}})
 
 twitter_diary.debug = (
     True if os.environ.get("TWITTER_DIARY_APP_DEBUG") == "true" else False

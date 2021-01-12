@@ -95,10 +95,7 @@ def refresh():
     line = (0, 0, 0)
 
     for emoji_number in emoji_numbers:
-        # try:
-        #     emoji = unicodedata.lookup(emoji_name[i].get("data-title"))
-        # except KeyError:
-        emoji = emoji_name[index].get("data-title")
+        emoji = emoji_name[index].get("id")
         count = emoji_number.get_text()
         after.append((date, emoji, count))
 

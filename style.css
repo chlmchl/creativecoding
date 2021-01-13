@@ -29,12 +29,13 @@ body {
 
 /* header */
 header {
+    background-color: #ffffff;
     position: fixed;
     width: 90%;
-    height: 70px;
     border-bottom: solid 0.01em var(--blue);
     margin-bottom: 10px;
     top:0;
+
     
 }
 
@@ -136,7 +137,8 @@ p#description span {
 }
 
 .diary_entry p:nth-child(1) {
-    font-size: 22px;
+    font-size: 18px;
+    width: 7%;
 }
 .diary_entry p:nth-child(2) {
     width: 70%;
@@ -151,3 +153,15 @@ p#description span {
 
 
 
+@media screen and (max-width: 1400px) {
+    .diary_column {
+        flex-wrap: nowrap;
+        flex-direction: column-reverse;
+        align-content: flex-start;
+        justify-content: flex-end;
+    }
+    .diary_entry {
+        width: 98%;
+    }
+
+}

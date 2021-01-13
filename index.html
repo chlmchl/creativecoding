@@ -23,7 +23,7 @@
             document.getElementById(
               "diary-content"
             ).innerHTML += `<div class="diary_entry">
-            <p>📖 ${line[0]}</p>
+            <p>📖 <!--${line[0]}--></p>
             <p>${line[4]}</p>
             <p>${String.fromCodePoint(parseInt(line[1], 16))}</p>
           </div>`;

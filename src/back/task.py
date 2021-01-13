@@ -121,7 +121,7 @@ def refresh():
 
 
 def diary():
-    sql = "SELECT * FROM delta"
+    sql = "SELECT * FROM delta ORDER BY id"
 
     cur = conn.cursor()
     cur.execute(sql)

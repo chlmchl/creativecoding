@@ -31,7 +31,7 @@ body {
 header {
     position: fixed;
     width: 90%;
-    height: 60px;
+    height: 70px;
     border-bottom: solid 0.01em var(--blue);
     margin-bottom: 10px;
     top:0;
@@ -43,6 +43,12 @@ header div {
     justify-content: space-between;
     align-items: center;
     padding-top: 10px;
+}
+
+header img {
+    height: 0.8em;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 h1 {
@@ -60,10 +66,14 @@ p#description {
     letter-spacing: 0.01em;
     /* font-weight: 600; */
     text-align: right;
-    width: 400px;
-    font-size: 12px;
+    width: 450px;
+    font-size: 13px;
     color: var(--blue);
 }
+p#description span {
+    font-style: normal;
+}
+
 
 /* section */
 
@@ -90,7 +100,7 @@ p#description {
     flex-direction: column-reverse;
     flex-wrap: wrap-reverse;
     align-content: flex-end;
-    justify-content: flex-end;
+    justify-content: flex-start;
     
     /* display: grid;
     grid-template-rows: repeat(5, auto);
@@ -126,17 +136,18 @@ p#description {
 }
 
 .diary_entry p:nth-child(1) {
-    width: 70%;
+    font-size: 22px;
 }
 .diary_entry p:nth-child(2) {
+    width: 70%;
+}
+.diary_entry p:nth-child(3) {
     width: 20%;
-    font-size: 16px;
-    font-style: italic;
+    font-size: 22px;
+    font-style: normal;
     font-weight: 600;
     text-align: right;
 }
 
-.diary_entry p:nth-child(3) {
-    font-size: 20px;
-}
+
 

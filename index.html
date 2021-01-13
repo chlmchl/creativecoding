@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>HTML5 Doctor | Element Index</title>
+    <title>Twitter Diary</title>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -23,6 +23,7 @@
             document.getElementById(
               "diary-content"
             ).innerHTML += `<div class="diary_entry">
+            <p>📖 ${line[0]}</p>
             <p>${line[4]}</p>
             <p>${String.fromCodePoint(parseInt(line[1], 16))}</p>
           </div>`;
@@ -33,9 +34,9 @@
     <div id="container">
       <header>
         <div>
-          <h1>Hello 🐦, how do you feel today?</h1>
+          <h1>Hello <img src="img/twitter.svg" alt="twitter logo"/>, how do you feel today?</h1>
           <p id="description">
-            🐦💭📖 (twitter’s diary) displays Twitter's most used emoji of the
+            <span><img src="img/twitter.svg" alt="twitter logo"/>💭📖 </span>(twitter’s diary) displays Twitter's most used emoji of the
             hour, as a mean to understand wether emojis can convey the overall
             emotions the world is going through.
           </p>
